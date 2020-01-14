@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<application xmlns="http://wadl.dev.java.net/2009/02">
+    <doc xmlns:jersey="http://jersey.java.net/" jersey:hint="This is simplified WADL with user and core resources only."/>
+    <grammars/>
+    <resources base="http://localhost/service/api/">
+        <resource path="healthcheck/">
+            <method id="getHealthcheck" name="GET">
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="schedule/">
+            <resource path="dumper">
+                <method id="getChannelDumper" name="GET">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="channel" style="query" type="xs:string"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="channel/{channelid}/reconcile-key/{reconcileKey}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="reconcileKey" style="template" type="xs:long"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="channelid" style="template" type="xs:long"/>
+                <method id="getChannelProgram" name="GET">
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="channel/{channelid}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="channelid" style="template" type="xs:long"/>
+                <method id="getChannel" name="GET">
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="ttv/">
+            <method id="setTTVPageInfo" name="POST">
+                <request>
+                    <representation mediaType="application/json"/>
+                </request>
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>
